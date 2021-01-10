@@ -1,4 +1,6 @@
-import csv, io
+import pandas as pd
+import requests
+import json
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -9,7 +11,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from .models import Account, Member
 from .serializers import AccountSerializer, MemberSerializer
-
+from .scripts.member_upload import get_auth_token, generate_request_body, process_file
 
 BAD_REQUEST_BODY = "Bad request body."
 DUPLICATE_PHONE_NUMBER = "Phone number already exists for this account."
@@ -55,7 +57,7 @@ class MemberViewSet(viewsets.ModelViewSet):
             except AttributeError as e:
                 print("Exception Occurred: ", e)
                 return Response(
-                    {"response": f"{BAD_REQUEST_BODY} Check that 'account' attribute exists for each record."},
+                    {"response": BAD_REQUEST_BODY},
                     status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -78,16 +80,9 @@ def member_upload(request):
         if not csv_file.name.endswith('.csv'):
             messages.error(request, 'This is not a csv file')
 
-        data_set = csv_file.read().decode('UTF-8')
-        io_string = io.StringIO(data_set)
-        next(io_string)
-        for column in csv.reader(io_string, delimiter=',', quotechar="|"):
-            _, created = Member.objects.update_or_create(
-                first_name=column[0],
-                last_name=column[1],
-                phone_number=column[2],
-                client_member_id=column[3],
-                account_id=column[4]
-            )
+        auth_token = get_auth_token()
+        is_processed = process_file(auth_token, csv_file)
+        print("Is csv file done processing: ", is_processed)
         context = {}
+
     return render(request, template, context)
