@@ -1,11 +1,14 @@
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render
 from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
+from django.contrib.auth.decorators import permission_required
 from .models import Account, Member
 from .serializers import AccountSerializer, MemberSerializer
-
+from .scripts.member_upload import get_auth_token, process_file
 
 BAD_REQUEST_BODY = "Bad request body."
 DUPLICATE_PHONE_NUMBER = "Phone number already exists for this account."
@@ -51,7 +54,32 @@ class MemberViewSet(viewsets.ModelViewSet):
             except AttributeError as e:
                 print("Exception Occurred: ", e)
                 return Response(
-                    {"response": f"{BAD_REQUEST_BODY} Check that 'account' attribute exists for each record."},
+                    {"response": BAD_REQUEST_BODY},
                     status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Admin or superuser can access this page
+@permission_required('admin.can_add_log_entry')
+def member_upload(request):
+    template = "member_upload.html"
+
+    prompt = {
+        'order': 'Order of the CSV should be first_name, last_name, phone_number, client_member_id, account'
+    }
+
+    if request.method == 'GET':
+        return render(request, template, prompt)
+
+    if request.method == 'POST':
+        csv_file = request.FILES['file']
+        if not csv_file.name.endswith('.csv'):
+            messages.error(request, 'This is not a csv file')
+
+        auth_token = get_auth_token()
+        is_processed = process_file(auth_token, csv_file)
+        print("Is csv file done processing: ", is_processed)
+        context = {}
+
+    return render(request, template, context)

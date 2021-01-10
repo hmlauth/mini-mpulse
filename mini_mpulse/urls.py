@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import include, path
 from django.contrib import admin
 from rest_framework import routers
-from hcore.views import AccountViewSet, MemberViewSet
+from hcore.views import AccountViewSet, MemberViewSet, member_upload
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'members', MemberViewSet, basename='member')
@@ -26,4 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api/auth/', include('djoser.urls.authtoken')),
+    path('upload-csv/', member_upload, name='member_upload'),
 ]

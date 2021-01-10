@@ -142,3 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SEPARATOR = ","
+CHUNKSIZE = 5
+AUTH_TOKEN_URL = "http://127.0.0.1:8000/api/auth/token/login/"
+MEMBER_CREATE_URL = "http://127.0.0.1:8000/api/v1/members/create"
