@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AccountViewSet, MemberViewSet, MemberCreateViewSet
+from .views import AccountViewSet, MemberViewSet
 
 urlpatterns = [
     url('members/$', MemberViewSet, name='member-list'),
