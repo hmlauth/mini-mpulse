@@ -1,5 +1,7 @@
 # Desktop Services Store
 .DS_Store
+mini_mpulse/sensitive_settings.py
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

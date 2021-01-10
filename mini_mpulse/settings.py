@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pathlib import Path
+from mini_mpulse.sensitive_settings import SECRET_KEY, DB_SETTINGS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
-SECRET_KEY = ''
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'mini_mpulse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': DB_SETTINGS['NAME'],
+        'USER': DB_SETTINGS['USER'],
+        'PASSWORD': DB_SETTINGS['PASSWORD'],
+        'HOST': DB_SETTINGS['HOST'],
         'PORT': ''
     }
 }
