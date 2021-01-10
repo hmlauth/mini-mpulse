@@ -33,7 +33,8 @@ python manage.py runserver
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/eac83d52514bd1b5655b#?env%5B00%20-%20Mini-Mpulse-User%5D=W3sia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicGFzc3dvcmQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiYWNjb3VudF9pZCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJtZW1iZXJfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicGhvbmVfbnVtYmVyIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImNsaWVudF9tZW1iZXJfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9XQ==)
 
 ## Future Development
-- Refactor batch inserts to handle files with up to 5 million rows
+- For CSV Uploader, output file showing success/fail including any error messages
+- Optimize batch inserts to handle files with up to 5 million rows
 - Include celery to handle processing large files while also servicing other requests
 - Dockerize
 
