@@ -1,17 +1,14 @@
-import pandas as pd
-import requests
-import json
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from .models import Account, Member
 from .serializers import AccountSerializer, MemberSerializer
-from .scripts.member_upload import get_auth_token, generate_request_body, process_file
+from .scripts.member_upload import get_auth_token, process_file
 
 BAD_REQUEST_BODY = "Bad request body."
 DUPLICATE_PHONE_NUMBER = "Phone number already exists for this account."
