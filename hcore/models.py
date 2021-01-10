@@ -18,7 +18,8 @@ class Member(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['phone_number', 'account_id'], name='unique_phone_number')
+            models.UniqueConstraint(fields=['phone_number', 'account_id'], name='unique_phone_number'),
+            models.UniqueConstraint(fields=['client_member_id', 'account_id'], name='unique_client_member_id')
         ]
 
     def __str__(self):

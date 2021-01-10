@@ -11,7 +11,7 @@ from .serializers import AccountSerializer, MemberSerializer
 from .scripts.member_upload import get_auth_token, process_file
 
 BAD_REQUEST_BODY = "Bad request body."
-DUPLICATE_PHONE_NUMBER = "Phone number already exists for this account."
+DUPLICATE_PHONE_NUMBER = "Non-unique - Either phone_number or client_member_id already exist for this account."
 DOES_NOT_EXIST = "Member or account does not exist."
 
 
