@@ -1,16 +1,32 @@
 # mini-mpulse
 "Mini mPulse" Python-Django application that utilizes APIs, Celery and Redis to manage members 
 
-# Local Setup
+## Local Setup
+ - Clone repo locally
+ - Create virtual environment and install python libraries
+```
+cd mini-mpulse
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+- Create database and update file with local postrgres DB credentials
+- Run migrations
+```
+python manage.py migrate
+```
 
-## Clone Repository
-- Git Clone
-- 
+## Start app
+- Start Django app
+```
+# from /mini-mpulse
+source venv/bin/activate
+python manage.py runserver
+```
 
-## Create Python3 Virtual Environment & Install Dependencies
-- 
+## Test APIs
+- Postman Collection: (Collectoin Link)[]
 
-## Start Services
-- Python Webserver
-- Redis Server
-- Celery
+## Future Development
+
+
