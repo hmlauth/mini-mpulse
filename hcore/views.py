@@ -1,8 +1,12 @@
+import csv, io
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django.shortcuts import render
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.contrib import messages
+from django.contrib.auth.decorators import permission_required
 from .models import Account, Member
 from .serializers import AccountSerializer, MemberSerializer
 
@@ -55,3 +59,35 @@ class MemberViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Admin or superuser can access this page
+@permission_required('admin.can_add_log_entry')
+def member_upload(request):
+    template = "member_upload.html"
+
+    prompt = {
+        'order': 'Order of the CSV should be first_name, last_name, phone_number, client_member_id, account'
+    }
+
+    if request.method == 'GET':
+        return render(request, template, prompt)
+
+    if request.method == 'POST':
+        csv_file = request.FILES['file']
+        if not csv_file.name.endswith('.csv'):
+            messages.error(request, 'This is not a csv file')
+
+        data_set = csv_file.read().decode('UTF-8')
+        io_string = io.StringIO(data_set)
+        next(io_string)
+        for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+            _, created = Member.objects.update_or_create(
+                first_name=column[0],
+                last_name=column[1],
+                phone_number=column[2],
+                client_member_id=column[3],
+                account_id=column[4]
+            )
+        context = {}
+    return render(request, template, context)
