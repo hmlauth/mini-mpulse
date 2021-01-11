@@ -50,11 +50,11 @@ class MemberViewSet(viewsets.ModelViewSet):
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             except IntegrityError as e:
                 print("Exception Occurred: ", e)
-                return Response({"response": DUPLICATE_PHONE_NUMBER}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"response": DUPLICATE_PHONE_NUMBER, "details": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
             except AttributeError as e:
                 print("Exception Occurred: ", e)
                 return Response(
-                    {"response": BAD_REQUEST_BODY},
+                    {"response": BAD_REQUEST_BODY, "details": serializer.errors},
                     status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
