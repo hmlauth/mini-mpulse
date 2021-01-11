@@ -22,7 +22,7 @@ CREATE DATABASE
 CREATE USER <username> WITH PASSWORD '<password>';
 GRANT ALL PRIVILEGES ON DATABASE myproject TO myprojectuser;
 ```
--Update `mini_mpulse/sensitive_settings.py` file with local postrgres DB credentials. Populate `SECRET_KEY` with something super secret.
+- Update `mini_mpulse/sensitive_settings.py` file with local postrgres DB credentials. Populate `SECRET_KEY` with something super secret.
 - Run migrations
 ```
 python manage.py migrate
