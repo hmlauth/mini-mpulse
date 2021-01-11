@@ -52,6 +52,7 @@ python manage.py runserver
 - Populate environment variables as you create/get members/accounts.
 
 ## CSV Uploader
+_Assumes atleast 1 account has been created with id=1. Currently no error handling. See server output for details on what happened during .csv upload._
 - To use CSV uploader, go to `/upload-csv` in your browser
 - Upload sample .csv file titled `test_member_upload.csv` at root of project
 
