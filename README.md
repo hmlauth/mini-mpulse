@@ -19,7 +19,6 @@ cp mini_mpulse/sensitive_settings.sample.py mini_mpulse/sensitive_settings.py
 ```
 python manage.py migrate
 ```
-- Change `DEBUG = True`
 
 ## Start app
 - Start Django app
