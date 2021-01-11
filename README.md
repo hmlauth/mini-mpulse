@@ -44,6 +44,7 @@ source venv/bin/activate
 python manage.py runserver
 ```
 - Now visit `http://127.0.0.1:8000/admin/` and login using the superuser credentials you created! 
+- Create at least 1 Account via Django Admin
 
 ## Test APIs
 Postman Collection -> https://www.getpostman.com/collections/eac83d52514bd1b5655b
