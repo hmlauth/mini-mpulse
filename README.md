@@ -44,9 +44,11 @@ source venv/bin/activate
 python manage.py runserver
 ```
 - Now visit `http://127.0.0.1:8000/admin/` and login using the superuser credentials you created! 
+- Create at least 1 Account via Django Admin
 
 ## Test APIs
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/eac83d52514bd1b5655b#?env%5B00%20-%20Mini-Mpulse-User%5D=W3sia2V5IjoidXNlcm5hbWUiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoicGFzc3dvcmQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoiYXV0aHRva2VuIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImlkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6ImFjY291bnRfaWQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWV9LHsia2V5IjoibWVtYmVyX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InBob25lX251bWJlciIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJjbGllbnRfbWVtYmVyX2lkIiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlfV0=)
+Postman Collection -> https://www.getpostman.com/collections/eac83d52514bd1b5655b
+
 ### Note 
 - Run GET Auth Token API first using your superuser username and password. Once token is returned, put it into your postman environment (`authtoken`) for use by all other API calls.
 - Populate environment variables as you create/get members/accounts.
