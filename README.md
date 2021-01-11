@@ -51,6 +51,10 @@ python manage.py runserver
 - Run GET Auth Token API first using your superuser username and password. Once token is returned, put it into your postman environment (`authtoken`) for use by all other API calls.
 - Populate environment variables as you create/get members/accounts.
 
+## CSV Uploader
+- To use CSV uploader, go to `/upload-csv` in your browser
+- Upload sample .csv file titled `test_member_upload.csv` at root of project
+
 ## Future Development
 - For CSV Uploader: 
 -- Extend Django Admin and showcase button there
