@@ -46,7 +46,7 @@ python manage.py runserver
 - Now visit `http://127.0.0.1:8000/admin/` and login using the superuser credentials you created! 
 
 ## Test APIs
-[Postman Collection](https://www.getpostman.com/collections/eac83d52514bd1b5655b)
+Postman Collection -> https://www.getpostman.com/collections/eac83d52514bd1b5655b
 
 ### Note 
 - Run GET Auth Token API first using your superuser username and password. Once token is returned, put it into your postman environment (`authtoken`) for use by all other API calls.
