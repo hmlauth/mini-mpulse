@@ -6,3 +6,5 @@ DB_SETTINGS = {
     'HOST': '',
     'PORT': ''
 }
+USERNAME = ''
+PASSWORD = ''
