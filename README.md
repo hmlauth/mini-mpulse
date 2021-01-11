@@ -19,6 +19,15 @@ cp mini_mpulse/sensitive_settings.sample.py mini_mpulse/sensitive_settings.py
 ```
 python manage.py migrate
 ```
+- Create yourself as a superuser and add your `USERNAME` and `PASSWORD` to `mini_mpulse/sensitive_settings.py`
+```
+python manage.py createsuperuser
+Username: <username>
+Email: <email (if you want, or skip)>
+Password: **********
+Password (again): *********
+Superuser created successfully.
+```
 
 ## Start app
 - Start Django app
@@ -33,12 +42,18 @@ python manage.py runserver
 
 ## Future Development
 - For CSV Uploader: 
--- Move button to Django Admin
+-- Extend Django Admin and showcase button there
 -- Generate output file showing success/fail including any error messages
--- Keep db record of filenames, timestamps and potentially performance reporting for uploads
--- Display csv uploads via clickable links so user can access the reporting stats
+-- Keep db record of filenames and timestamps
+-- Display csv uploads via clickable links so user can access the upload stats
 
 - Optimize batch inserts to handle files with up to 5 million rows
-- Include Celery and RabbitMQ to handle processing large files while also servicing other requests
+-- Include Celery and RabbitMQ to handle processing large files while also servicing other requests
+-- Split file into multiple files and save to a location with adequate memory
+-- Spawn processes for each file using multiple workers
+-- API rate limiting and throttling
+-- Incorporate que and system performance checks/calls
+-- Possible create separate API specifically for CSV uploads separate from main application APIs
+
 - Dockerize
 
